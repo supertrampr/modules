@@ -1,4 +1,4 @@
-module github.com/supertrampr/azure
+module github.com/supertrampr/modules/azure
 
 go 1.19
 
