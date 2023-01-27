@@ -34,7 +34,7 @@ func CreateMySQLFlexibleServerClientE(subscriptionID string) (*mysqlflexibleserv
 
 // GetMYSQLServer is a helper function that gets the server.
 // This function would fail the test if there is an error.
-func GetMySQLServer(t testing.TestingT, resGroupName string, serverName string, subscriptionID string) *mysqlflexibleservers.Server {
+func GetMySQLFlexibleServer(t testing.TestingT, resGroupName string, serverName string, subscriptionID string) *mysqlflexibleservers.Server {
 	mysqlServer, err := GetMySQLFlexibleServerE(t, subscriptionID, resGroupName, serverName)
 	require.NoError(t, err)
 
