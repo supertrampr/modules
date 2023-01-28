@@ -4,13 +4,14 @@ import (
 	"context"
 
 	"github.com/Azure/azure-sdk-for-go/profiles/latest/mysql/mgmt/mysqlflexibleservers"
+	mysql_flexible "github.com/Azure/azure-sdk-for-go/profiles/latest/mysql/mgmt/mysqlflexibleservers"
 	"github.com/gruntwork-io/terratest/modules/testing"
 	"github.com/stretchr/testify/require"
 )
 
 // GetMYSQLServerClientE is a helper function that will setup a mysql server client.
 // TODO: remove in next version
-func CreateMySQLFlexibleServerClientE(subscriptionID string) (*mysqlflexibleservers.ServersClient, error) {
+func CreateMySQLFlexibleServerClientE(subscriptionID string) (*mysql_flexible.ServersClient, error) {
 	// Validate Azure subscription ID
 	subscriptionID, err := getTargetAzureSubscription(subscriptionID)
 	if err != nil {
@@ -34,7 +35,7 @@ func CreateMySQLFlexibleServerClientE(subscriptionID string) (*mysqlflexibleserv
 
 // GetMYSQLServer is a helper function that gets the server.
 // This function would fail the test if there is an error.
-func GetMySQLFlexibleServer(t testing.TestingT, resGroupName string, serverName string, subscriptionID string) *mysqlflexibleservers.Server {
+func GetMySQLFlexibleServer(t testing.TestingT, resGroupName string, serverName string, subscriptionID string) *mysql_flexible.Server {
 	mysqlServer, err := GetMySQLFlexibleServerE(t, subscriptionID, resGroupName, serverName)
 	require.NoError(t, err)
 
@@ -42,7 +43,7 @@ func GetMySQLFlexibleServer(t testing.TestingT, resGroupName string, serverName 
 }
 
 // GetMYSQLServerE is a helper function that gets the server.
-func GetMySQLFlexibleServerE(t testing.TestingT, subscriptionID string, resGroupName string, serverName string) (*mysqlflexibleservers.Server, error) {
+func GetMySQLFlexibleServerE(t testing.TestingT, subscriptionID string, resGroupName string, serverName string) (*mysql_flexible.Server, error) {
 	// Create a mySQl Server client
 	mysqlClient, err := CreateMySQLFlexibleServerClientE(subscriptionID)
 	if err != nil {
@@ -60,7 +61,7 @@ func GetMySQLFlexibleServerE(t testing.TestingT, subscriptionID string, resGroup
 }
 
 // GetMYSQLDBClientE is a helper function that will setup a mysql DB client.
-func GetMySQLFlexibleDBClientE(subscriptionID string) (*mysqlflexibleservers.DatabasesClient, error) {
+func GetMySQLFlexibleDBClientE(subscriptionID string) (*mysql_flexible.DatabasesClient, error) {
 	// Validate Azure subscription ID
 	subscriptionID, err := getTargetAzureSubscription(subscriptionID)
 	if err != nil {
@@ -84,7 +85,7 @@ func GetMySQLFlexibleDBClientE(subscriptionID string) (*mysqlflexibleservers.Dat
 
 // GetMYSQLDB is a helper function that gets the database.
 // This function would fail the test if there is an error.
-func GetMySQLFlexibleDB(t testing.TestingT, resGroupName string, serverName string, dbName string, subscriptionID string) *mysqlflexibleservers.Database {
+func GetMySQLFlexibleDB(t testing.TestingT, resGroupName string, serverName string, dbName string, subscriptionID string) *mysql_flexible.Database {
 	database, err := GetMySQLFlexibleDBE(t, subscriptionID, resGroupName, serverName, dbName)
 	require.NoError(t, err)
 
@@ -92,7 +93,7 @@ func GetMySQLFlexibleDB(t testing.TestingT, resGroupName string, serverName stri
 }
 
 // GetMYSQLDBE is a helper function that gets the database.
-func GetMySQLFlexibleDBE(t testing.TestingT, subscriptionID string, resGroupName string, serverName string, dbName string) (*mysqlflexibleservers.Database, error) {
+func GetMySQLFlexibleDBE(t testing.TestingT, subscriptionID string, resGroupName string, serverName string, dbName string) (*mysql_flexible.Database, error) {
 	// Create a mySQl db client
 	mysqldbClient, err := GetMySQLFlexibleDBClientE(subscriptionID)
 	if err != nil {
